@@ -65,7 +65,7 @@ function _install_packages() {
     libnet-dns-perl locales logwatch
     netcat-openbsd nftables rsyslog
     supervisor uuid whois
-  )
+    )
 
   POSTFIX_PACKAGES=(
     pflogsumm postgrey postfix-ldap
@@ -75,6 +75,7 @@ function _install_packages() {
   MAIL_PROGRAMS_PACKAGES=(
     fetchmail opendkim opendkim-tools
     opendmarc libsasl2-modules sasl2-bin
+    uucp
   )
 
   # `bind9-dnsutils` provides the `dig` command
