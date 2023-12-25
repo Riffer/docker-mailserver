@@ -277,8 +277,6 @@ RUN <<EOF
   update-locale
 EOF
 
-COPY VERSION /
-
 COPY \
   target/bin/* \
   target/scripts/*.sh \
@@ -295,8 +293,8 @@ COPY target/scripts/startup/setup.d /usr/local/bin/setup.d
 #
 
 FROM stage-main AS stage-final
+ARG DMS_RELEASE=edge
 ARG VCS_REVISION=unknown
-ARG VCS_VERSION=edge
 
 WORKDIR /
 EXPOSE 25 587 143 465 993 110 995 4190
@@ -327,4 +325,5 @@ LABEL org.opencontainers.image.source="https://github.com/docker-mailserver/dock
 # ARG invalidates cache when it is used by a layer (implicitly affects RUN)
 # Thus to maximize cache, keep these lines last:
 LABEL org.opencontainers.image.revision=${VCS_REVISION}
-LABEL org.opencontainers.image.version=${VCS_VERSION}
+LABEL org.opencontainers.image.version=${DMS_RELEASE}
+ENV DMS_RELEASE=${DMS_RELEASE}
